@@ -62,7 +62,7 @@ jasonL-- 2018-11-19 22:22
 - Finished making the component map for design.pdf
 
 ==============================================================
-jerryL-- 2018-11-21 05:45
+jerryY-- 2018-11-21 05:45
 --------------------------------------------------------------
 - Edited project description for design.pdf
 - Wrote up break down of tasks for design.pdf
@@ -72,5 +72,9 @@ jerryL-- 2018-11-21 05:45
 jasonL-- 2018-11-22 14:02
 --------------------------------------------------------------
 - Redid the component map.
+
+jerryY-- 2018-11-26 13:07
+--------------------------------------------------------------
+- Updated readme with team roster and project description 
 
 ==============================================================
