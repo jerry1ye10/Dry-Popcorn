@@ -1,21 +1,3 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-* rename this file devlog.txt
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
- modify appropriately.
-Each entry should begin with the following format:
- firstL -- TIMESTAMP\n
-e.g.:
-clydeS -- 2999-12-31 23:59
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Dry Popcorn
 Raymond Wu
 Jerry Ye
@@ -23,7 +5,11 @@ Jiajie Mai
 Jason Lin
 pd 07
 ---------------------
-<Project Title/Description>
+Tuney Forecast 
+Our project will take advantage of the Last.fm API and the Open Weather Map API to recommend for a user based on their current location. The User will be able to enter a location as a prompt, and our project will take that location and use the Open Weather Map API to generate the weather from that location at the current time. Our project would then call on a self-developed algorithm to take the current weather and recommend song choices based on that. 
+
+We decided to use Bootstrap because of its great grid system. It also has great documentation and great developer support. It seems to be more customizable and is more popular, leading to more possibilities.
+
 
 
  ______   ______   __   __   __       ______   _______
@@ -80,9 +66,15 @@ jasonL -- 2018-11-22 14:02
 jerryY -- 2018-11-26 13:07
 --------------------------------------------------------------
 - Updated readme with team roster and project description 
+- Revise Design doc to reflect changed API usage
 
 ==============================================================
-raymondW -- 2018-11-26 13:xx
+raymondW -- 2018-11-26 13:07
 --------------------------------------------------------------
 - Researched an API replacement for the Spotify API
 - Tested the last.fm API in a Flask starter kit and ensured the API is able to meet our needs
+
+jasonL -- 2018-11-26 13:07
+--------------------------------------------------------------
+- Revise Design doc to reflect changed API usage
+
