@@ -52,29 +52,37 @@ jasonL -- 2018-11-19 13:15
 --------------------------------------------------------------
 - Brainstormed ideas for project
 
-jiajieM-- 2018-11-19 13:15
+jiajieM -- 2018-11-19 13:15
 --------------------------------------------------------------
 - Brainstormed ideas for project
 
 ==============================================================
-jasonL-- 2018-11-19 22:22
+jasonL -- 2018-11-19 22:22
 --------------------------------------------------------------
 - Finished making the component map for design.pdf
 
+raymondW -- 2018-11-20 23:00
+--------------------------------------------------------------
+- Finished the front end site map for design.pdf
+
 ==============================================================
-jerryY-- 2018-11-21 05:45
+jerryY -- 2018-11-21 05:45
 --------------------------------------------------------------
 - Edited project description for design.pdf
 - Wrote up break down of tasks for design.pdf
 - Wrote up list of program components for design.pdf
 
 ==============================================================
-jasonL-- 2018-11-22 14:02
+jasonL -- 2018-11-22 14:02
 --------------------------------------------------------------
 - Redid the component map.
 
-jerryY-- 2018-11-26 13:07
+jerryY -- 2018-11-26 13:07
 --------------------------------------------------------------
 - Updated readme with team roster and project description 
 
 ==============================================================
+raymondW -- 2018-11-26 13:xx
+--------------------------------------------------------------
+- Researched an API replacement for the Spotify API
+- Tested the last.fm API in a Flask starter kit and ensured the API is able to meet our needs
