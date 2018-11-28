@@ -95,3 +95,10 @@ jasonL -- 2018-11-26 13:07
 jasonL -- 2018-11-26 19:45
 --------------------------------------------------------------
 - Fixed the format of devlog and added flask starter kit.
+
+==============================================================
+raymondW -- 2018-11-27 21:07
+--------------------------------------------------------------
+- Worked with jasonL to brainstorm basic algorithm for generating tags based on temperature from the OpenWeatherMap API
+- Shared Google Doc to gather ideas for tags for temperature ranges
+- Tested all suggested tags for appropriateness
