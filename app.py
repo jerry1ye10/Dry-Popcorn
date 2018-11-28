@@ -1,12 +1,11 @@
-7#Dry Popcorn -- Jason Lin, Jiajie Mai, Raymond Wu, Jerry Ye
+#Dry Popcorn -- Jason Lin, Jiajie Mai, Raymond Wu, Jerry Ye
 #SoftDev1 pd07
 #P01 -- ArRESTed Development
 #2018-11-26
 
+from flask import Flask, render_template, request
 from urllib import request #stdlib
 import json #stdlib
-
-from flask import Flask, render_template, request
 app = Flask(__name__) # instantiates an instance of Flask
 
 
@@ -15,7 +14,7 @@ app = Flask(__name__) # instantiates an instance of Flask
 API_KEY = '7af285e176cbccfeb8a1b249c84479a1'
 
 
-TAG = 'chill'
+TAG = 'vibes'
 URL = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag=' + TAG + '&api_key=' + API_KEY
 
 
@@ -28,12 +27,12 @@ SAMPLE_ARTIST = data['tracks']['track'][0]['artist']['name']
 
 print (URL)
 
-
 @app.route("/") #Linking a function to a route
 def home():
     print (URL)
     return SAMPLE_NAME + "<br>" + SAMPLE_ARTIST
     # return render_template("homepage.html")
+
 
 @app.route("/login")
 def login():
