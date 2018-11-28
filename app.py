@@ -3,7 +3,7 @@
 #P01 -- ArRESTed Development
 #2018-11-26
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from urllib import request #stdlib
 import json #stdlib
 app = Flask(__name__) # instantiates an instance of Flask
