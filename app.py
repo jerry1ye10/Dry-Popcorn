@@ -14,7 +14,7 @@ app = Flask(__name__) # instantiates an instance of Flask
 API_KEY = '7af285e176cbccfeb8a1b249c84479a1'
 
 
-TAG = 'vibes'
+TAG = 'hot'
 URL = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag=' + TAG + '&api_key=' + API_KEY
 
 
@@ -30,13 +30,13 @@ print (URL)
 @app.route("/") #Linking a function to a route
 def home():
     print (URL)
-    return SAMPLE_NAME + "<br>" + SAMPLE_ARTIST
+    return render_template("homepage.html", song=SAMPLE_NAME, name=SAMPLE_ARTIST)
     # return render_template("homepage.html")
 
 
 @app.route("/login")
 def login():
-    return 1
+    return render_template("login.html");
 
 @app.route("/register")
 def register():
