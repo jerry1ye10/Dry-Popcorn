@@ -8,7 +8,27 @@ app = Flask(__name__) # instantiates an instance of Flask
 
 @app.route("/") #Linking a function to a route
 def home():
-    return "Hello, World!"
+    return render_template("homepage.html")
+
+@app.route("/login")
+def login():
+    return 1
+
+@app.route("/register")
+def register():
+    return 1
+
+@app.route("/auth")
+def authenticate():
+    return 1
+
+@app.route("/favorites")
+def favorites():
+    return 1
+
+@app.route("/search")
+def search():
+    return 1
 
 if __name__ == "__main__":
     app.debug = True

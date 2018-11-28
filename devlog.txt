@@ -102,3 +102,10 @@ raymondW -- 2018-11-27 21:07
 - Worked with jasonL to brainstorm basic algorithm for generating tags based on temperature from the OpenWeatherMap API
 - Shared Google Doc to gather ideas for tags for temperature ranges
 - Tested all suggested tags for appropriateness
+
+==============================================================
+jasonL -- 2018-11-28 10:16
+--------------------------------------------------------------
+- Added all of the routes and html pages.
+
+==============================================================
