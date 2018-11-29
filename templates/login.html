@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <title>
-    Login
-  </title>
-  <head>
-    <h1>Login</h1>
-    <br>
-  </head>
-  <body>
-    Username<br>
-    <input type="text" name="username">
-    <br>
-    Password<br>
-    <input type="text" name="password">
-    <br>
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/auth">
+  Username<br>
+  <input type="text" name="username">
+  <br>
+  Password<br>
+  <input type="text" name="password">
+  <br>
+  <input type="submit" name="login"
+</form>
+{% endblock %}

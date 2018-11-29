@@ -40,19 +40,19 @@ def login():
 
 @app.route("/register")
 def register():
-    return 1
+    return render_template("register.html")
 
-@app.route("/auth")
+@app.route("/auth", methods=["POST"])
 def authenticate():
-    return 1
+    return "hi"
 
 @app.route("/favorites")
 def favorites():
-    return 1
+    return render_template("favorites.html")
 
 @app.route("/search")
 def search():
-    return 1
+    return render_template("search.html")
 
 if __name__ == "__main__":
     app.debug = True
