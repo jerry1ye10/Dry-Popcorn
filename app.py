@@ -3,11 +3,11 @@
 #P01 -- ArRESTed Development
 #2018-11-26
 
-from flask import Flask, render_template
+from flask import Flask, render_template, session, url_for, redirect, flash
+from flask import request as frequest
 from urllib import request #stdlib
 import json #stdlib
 app = Flask(__name__) # instantiates an instance of Flask
-
 
 # https://api.openweathermap.org/data/2.5/weather?zip=10282,us&appid=ba47437a11844f86e94ca05cf41ea0cd&units=imperial
 
@@ -44,7 +44,10 @@ def register():
 
 @app.route("/auth", methods=["POST"])
 def authenticate():
-    return "hi"
+    username_input = frequest.form.get("username")
+    password_input = frequest.form.get("password")
+    print(username_input + "," + password_input)
+    return redirect(url_for("login"))
 
 @app.route("/favorites")
 def favorites():
