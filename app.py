@@ -3,10 +3,12 @@
 #P01 -- ArRESTed Development
 #2018-11-26
 
-from flask import Flask, render_template, session, url_for, redirect, flash
-from flask import request as frequest
 from urllib import request #stdlib
 import json #stdlib
+
+from flask import Flask, render_template, session, url_for, redirect, flash
+from flask import request as frequest
+
 app = Flask(__name__) # instantiates an instance of Flask
 
 # https://api.openweathermap.org/data/2.5/weather?zip=10282,us&appid=ba47437a11844f86e94ca05cf41ea0cd&units=imperial
