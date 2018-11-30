@@ -118,14 +118,13 @@ raymondW -- 2018-11-28 13:28
 --------------------------------------------------------------
 - Completed the tags for each temperature range
 - Worked with Jason to finalize preliminary input for weather data (city name or US zip code)
+
 ==============================================================
 jasonL -- 2018-11-29 10:17
 --------------------------------------------------------------
 - Made all html pages inherit from base.html
-==============================================================
-jerryY -- 2018-11-30 12:56
---------------------------------------------------------------
-- Updated design doc to reflect changes in development order
-
+jasonL -- 2018-11-29 10:17
+124--------------------------------------------------------------
+125- Made all html pages inherit from base.html
 
 ==============================================================
