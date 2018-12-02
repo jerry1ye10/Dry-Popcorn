@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% set msgs = get_flashed_messages() %}
+  {% for each in msgs %}
+    {{each}}<br>
+  {% endfor %}
 <form action="/auth" method="POST">
   Username<br>
   <input type="text" name="username">

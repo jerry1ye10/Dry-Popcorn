@@ -9,6 +9,8 @@ import json #stdlib
 from flask import Flask, render_template, session, url_for, redirect, flash
 from flask import request as frequest
 
+from util import db
+
 app = Flask(__name__) # instantiates an instance of Flask
 
 # https://api.openweathermap.org/data/2.5/weather?zip=10282,us&appid=ba47437a11844f86e94ca05cf41ea0cd&units=imperial
@@ -46,10 +48,27 @@ def register():
 
 @app.route("/auth", methods=["POST"])
 def authenticate():
-    username_input = frequest.form.get("username")
-    password_input = frequest.form.get("password")
-    print(username_input + "," + password_input)
-    return redirect(url_for("login"))
+    submit_type = frequest.form.get("submit")
+    if (submit_type == "register"):
+        username_input = frequest.form.get("username")
+        password_input = frequest.form.get("password")
+        c_password_input = frequest.form.get("confirm_password")
+        #get all users
+        username_list = db.get_username_list()
+        if (username_input in username_list):
+            flash("Username already exists. Please try a different username.")
+        #check that password confirm
+        elif (password_input != c_password_input):
+            flash("Password and Confirm Password do not match.")
+        else:
+            db.add_user(username_input,password_input)
+            flash("Successfully created account.")
+            return redirect(url_for("login"))
+        return redirect(url_for("register"))
+    elif (submit_type == "login"):
+        username_input = frequest.form.get("username")
+        password_input = frequest.form.get("password")
+        return redirect(url_for("login"))
 
 @app.route("/favorites")
 def favorites():
