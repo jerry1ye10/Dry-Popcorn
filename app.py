@@ -56,17 +56,19 @@ def home():
 
 @app.route("/login")
 def login():
+    if (is_logged_in()):
+        return redirect(url_for("home"))
     return render_template("login.html");
 
 @app.route("/register")
 def register():
-    return render_template("register.html")
+    return render_template("register.html", isLoggedIn = is_logged_in())
 
 @app.route("/auth", methods=["POST"])
 def authenticate():
     submit_type = frequest.form.get("submit")
     username_list = db.get_username_list()
-    if (submit_type == "register"):
+    if (submit_type == "Register"):
         username_input = frequest.form.get("username")
         password_input = frequest.form.get("password")
         c_password_input = frequest.form.get("confirm_password")
@@ -80,7 +82,7 @@ def authenticate():
             flash("Successfully created account.","success")
             return redirect(url_for("login"))
         return redirect(url_for("register"))
-    elif (submit_type == "login"):
+    elif (submit_type == "Login"):
         username_input = frequest.form.get("username")
         password_input = frequest.form.get("password")
         if (username_input in username_list):
@@ -89,6 +91,8 @@ def authenticate():
                 return redirect(url_for("home"))
         flash("Username or password is incorrect. Please try again.","error")
         return redirect(url_for("login"))
+    #delete this afterwards, temp
+    return redirect(url_for("search"))
 
 @app.route("/logout")
 def logout():
@@ -97,11 +101,13 @@ def logout():
 
 @app.route("/favorites")
 def favorites():
-    return render_template("favorites.html")
+    if (not is_logged_in()):
+        return redirect(url_for("login"))
+    return render_template("favorites.html", isLoggedIn = is_logged_in())
 
 @app.route("/search", methods=["GET"])
 def search():
-    return render_template("search.html")
+    return render_template("search.html", isLoggedIn = is_logged_in())
 
 if __name__ == "__main__":
     app.debug = True

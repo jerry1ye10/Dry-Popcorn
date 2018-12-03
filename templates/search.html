@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-Type in a city to find a suggested song!
-<br>
-<input type="text" name="search">
-{% endblock %}   
+<div class="main">
+  <h1>Search</h1>
+  <br>
+  {% set msgs = get_flashed_messages(with_categories=true) %}
+  {% for category, each in msgs %}
+    <p class="{{category}}">{{each}}<p>
+  {% endfor %}
+  <form action="/auth" method="POST">
+    <p class="login-info">Type in a city name to find a suggested song!</p>
+    <input type="text" name="search">
+    <br><br>
+    <input type="submit" id="submit" name="submit" value="Search">
+  </form>
+  <!--
+    Use bootstrap to display different formats of songs. Needs a variable to know
+    that it has to display the songs
+    -->
+</div>
+{% endblock %}
