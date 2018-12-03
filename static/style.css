@@ -1,8 +1,60 @@
 body {
-    background:red;
+  background:#B2DBBF;
 }
 
 h1{
-    color:#F0F0F0;
-    text-align: center;
-  }
+  color: #247BA0;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 38px;
+  text-align: center;
+}
+
+footer{
+  margin: 0px 30px;
+}
+
+.navbar{
+  background: #F3FFBD;
+  box-shadow: 2px 2px 10px 2px grey;
+}
+
+.main{
+  margin: 30px 30px;
+}
+
+.nav-link{
+  font-family: "Helvetica";
+  color: #70C1B3;
+  font-weight: bold;
+  font-size: 17px;
+  padding: 0px 6px;
+  text-decoration: none;
+}
+
+.nav-link:hover{
+  font-family: "Helvetica";
+  color: #B2DBBF;
+  font-weight: bold;
+  font-size: 17px;
+  padding: 0px 6px;
+  text-decoration: none;
+}
+
+.navbar-brand{
+  font-family: "Helvetica";
+  color: #247BA0;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0px;
+  text-decoration: none;
+}
+
+.navbar-brand:hover{
+  font-family: "Helvetica";
+  color: #247BA0;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0px;
+  text-decoration: none;
+}

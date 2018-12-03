@@ -12,11 +12,21 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-sm">
+      <a href="/" class="navbar-brand">Tuney Forcast</a>
+      <a href="/search" class="nav-link">Search</a>
+      {% if isLoggedIn %}
+        <a href="/favorites" class="nav-link">Favorites</a>
+        <a href="/logout" class="nav-link ml-auto">Log Out</a>
+      {% else %}
+        <a href="/login" class="nav-link ml-auto">Login</a>
+      {% endif %}
+    </nav>
     {% block content %}
     {% endblock %}
   </body>
-
   <footer>
     Copyright Dry Popcorn
   </footer>
+
 </html>

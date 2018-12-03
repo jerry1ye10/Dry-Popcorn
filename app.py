@@ -5,6 +5,8 @@
 
 from urllib import request #stdlib
 import json #stdlib
+import os
+import random
 
 from flask import Flask, render_template, session, url_for, redirect, flash
 from flask import request as frequest
@@ -12,7 +14,7 @@ from flask import request as frequest
 from util import db
 
 app = Flask(__name__) # instantiates an instance of Flask
-
+app.secret_key = os.urandom(32)
 # https://api.openweathermap.org/data/2.5/weather?zip=10282,us&appid=ba47437a11844f86e94ca05cf41ea0cd&units=imperial
 
 API_KEY = '7af285e176cbccfeb8a1b249c84479a1'
@@ -31,12 +33,26 @@ SAMPLE_ARTIST = data['tracks']['track'][0]['artist']['name']
 
 print (URL)
 
+def is_logged_in():
+    '''Returns True if the user is logged in. False otherwise.'''
+    return "username" in session
+
 @app.route("/") #Linking a function to a route
 def home():
-    print (URL)
-    return render_template("homepage.html", song=SAMPLE_NAME, name=SAMPLE_ARTIST)
-    # return render_template("homepage.html")
-
+    cities = ["New York", "Los Angeles", "Miami", "Beijing", "Milan",
+              "Hanoi", "Dubai", "Buenos Aires", "Saint Petersburg", "Caracas",
+              "Cairo", "Munich", "Budapest", "Birmingham", "Alexandria",
+              "Lanzhou", "Tokyo", "Kiev", "Seoul", "Moscow", "Rome", "Toronto",
+              "Sydney", "Hiroshima", "Casablanca", "Delhi", "Hong Kong",
+              "Montreal", "Istanbul", "Madrid", "Havana", "Mumbai", "Houston",
+              "San Diego", "Hamburg", "Phoenix", "Detroit", "Austin", "Portland",
+              "Minneapolis", "Rochester", "Oakland", "Jersey City", "Tampa",
+              "Pittsburgh", "San Jose", "Atlanta", "Boston", "Cleveland",
+              "New Orleans", "Buffalo", "Dallas", "Philadelphia", "Newark",
+              "Beijing"]
+    random_list = random.sample(cities,10)
+    return render_template("homepage.html", random_cities = random_list,
+                                            isLoggedIn = is_logged_in())
 
 @app.route("/login")
 def login():
@@ -68,13 +84,22 @@ def authenticate():
     elif (submit_type == "login"):
         username_input = frequest.form.get("username")
         password_input = frequest.form.get("password")
+        if (db.check_password(username_input,password_input)):
+            session["username"] = username_input
+            return redirect(url_for("home"))
+        flash("Username or password is incorrect.")
         return redirect(url_for("login"))
+
+@app.route("/logout")
+def logout():
+    session.pop("username")
+    return redirect(url_for("login"))
 
 @app.route("/favorites")
 def favorites():
     return render_template("favorites.html")
 
-@app.route("/search")
+@app.route("/search", methods=["GET"])
 def search():
     return render_template("search.html")
 

@@ -38,3 +38,14 @@ def get_username_list():
     for user in output:
         user_list.append(user[0])
     return user_list
+
+def check_password(username,password):
+    '''Returns True if the password matches the password that is associated
+    with the username in the database and False otherwise.'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT password FROM users WHERE username = ?;"
+    c.execute(command,(username,))
+    output = c.fetchall()
+    db.close()
+    return output[0][0] == password
