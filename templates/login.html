@@ -2,18 +2,21 @@
 
 {% block content %}
 <div class="main">
-  {% set msgs = get_flashed_messages() %}
-    {% for each in msgs %}
-      {{each}}<br>
-    {% endfor %}
+  <h1>Login</h1>
+  <br>
+  {% set msgs = get_flashed_messages(with_categories=true) %}
+  {% for category, each in msgs %}
+    <p class="{{category}}">{{each}}<p>
+  {% endfor %}
   <form action="/auth" method="POST">
-    Username<br>
+    <p class="login-info">Username</p>
     <input type="text" name="username">
     <br>
-    Password<br>
+    <p class="login-info">Password</p>
     <input type="text" name="password">
-    <br>
-    <input type="submit" name="submit" value="login">
+    <br><br>
+    <p class="register">Don't have an account? <a href="/register">Register here!</a><p>
+    <input type="submit" id="submit" name="submit" value="login" placeholder="Login">
   </form>
 </div>
 

@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% set msgs = get_flashed_messages() %}
-  {% for each in msgs %}
-    {{each}}<br>
+<div class="main">
+  <h1>Register</h1>
+  <br>
+  {% set msgs = get_flashed_messages(with_categories=true) %}
+  {% for category, each in msgs %}
+    <p class="{{category}}">{{each}}<p>
   {% endfor %}
-<form action="/auth" method="POST">
-  Username<br>
-  <input type="text" name="username">
-  <br>
-  Password<br>
-  <input type="text" name="password">
-  <br>
-  Confirm Password<br>
-  <input type="text" name="confirm_password">
-  <br>
-  <input type="submit" name="submit" value="register">
-</form>
+  <form action="/auth" method="POST">
+    <p class="login-info">Username</p>
+    <input type="text" name="username">
+    <br>
+    <p class="login-info">Password</p>
+    <input type="text" name="password">
+    <br>
+    <p class="login-info">Confirm Password</p>
+    <input type="text" name="confirm_password">
+    <br><br>
+    <p class="register">Already have an account? <a href="/login">Login here!</a><p>
+    <input type="submit" id="submit" name="submit" value="register" placeholder="Register">
+  </form>
+</div>
 {% endblock %}

@@ -7,11 +7,12 @@ h1{
   font-family: "Helvetica";
   font-weight: bold;
   font-size: 38px;
-  text-align: center;
 }
 
 footer{
+  font-family: "Helvetica";
   margin: 0px 30px;
+  text-align: right;
 }
 
 .navbar{
@@ -20,6 +21,7 @@ footer{
 }
 
 .main{
+  text-align: center;
   margin: 30px 30px;
 }
 
@@ -57,4 +59,41 @@ footer{
   font-size: 20px;
   padding: 0px;
   text-decoration: none;
+}
+
+.login-info{
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 20px;
+  margin: 5px;
+}
+
+.error{
+  color: red;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0px;
+}
+
+.success{
+  color: green;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0px;
+}
+
+#register{
+  font-family: "Helvetica";
+  font-size: 13px;
+  margin: 0px;
+}
+
+#submit{
+  width: 50%;
+  height: 40px;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 17px;
 }

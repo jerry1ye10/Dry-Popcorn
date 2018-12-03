@@ -65,29 +65,29 @@ def register():
 @app.route("/auth", methods=["POST"])
 def authenticate():
     submit_type = frequest.form.get("submit")
+    username_list = db.get_username_list()
     if (submit_type == "register"):
         username_input = frequest.form.get("username")
         password_input = frequest.form.get("password")
         c_password_input = frequest.form.get("confirm_password")
-        #get all users
-        username_list = db.get_username_list()
         if (username_input in username_list):
-            flash("Username already exists. Please try a different username.")
+            flash("Username already exists. Please try a different username.","error")
         #check that password confirm
         elif (password_input != c_password_input):
-            flash("Password and Confirm Password do not match.")
+            flash("Password and Confirm Password do not match.","error")
         else:
             db.add_user(username_input,password_input)
-            flash("Successfully created account.")
+            flash("Successfully created account.","success")
             return redirect(url_for("login"))
         return redirect(url_for("register"))
     elif (submit_type == "login"):
         username_input = frequest.form.get("username")
         password_input = frequest.form.get("password")
-        if (db.check_password(username_input,password_input)):
-            session["username"] = username_input
-            return redirect(url_for("home"))
-        flash("Username or password is incorrect.")
+        if (username_input in username_list):
+            if (db.check_password(username_input,password_input)):
+                session["username"] = username_input
+                return redirect(url_for("home"))
+        flash("Username or password is incorrect. Please try again.","error")
         return redirect(url_for("login"))
 
 @app.route("/logout")
