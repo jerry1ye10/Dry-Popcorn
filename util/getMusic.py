@@ -5,10 +5,16 @@
 
 from urllib import request #stdlib
 import json #stdlib
+from random import choice
 
 # util file for sending last.fm API requests, returning relevant information
 
-MUSIC_API_KEY = '7af285e176cbccfeb8a1b249c84479a1'
+#get API key from MUSIC_API_KEY.txt
+MUSIC_API_KEY = open('MUSIC_API_KEY.txt', 'r') #file object
+MUSIC_API_KEY = MUSIC_API_KEY.read() #contents of file
+MUSIC_API_KEY = MUSIC_API_KEY.replace('\n', '') #remove newline characters
+
+# print( repr(MUSIC_API_KEY) ) #for debugging
 
 # dictionary mapping temperature changes to preset music tags
 # each key applies to the range from key to key+9, inclusive
@@ -33,7 +39,7 @@ def getURL (tag):
     URL = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag={}&api_key={}'.format(tag, MUSIC_API_KEY)
     return URL
 
-# print (getURL('christmas')) #for debugging
+print (getURL('christmas')) #for debugging
 
 def getDict (url):
     """Returns the data dictionary to hold the data held in the JSON object string.
@@ -58,7 +64,7 @@ def getRelevantInfoList (dataDict):
             'name'   : track['name'],
             'artist' : track['artist']['name'],
             'url'    : track['url'],
-            'image'  : track['image'][2]['#text']
+            'image'  : track['image'][3]['#text']
         })
 
     return relevantInfoList
@@ -68,12 +74,12 @@ def getRelevantInfoList (dataDict):
 # print( getRelevantInfoList(d) )
 
 def getNSongs (relevantInfoList, n):
-    """Returns a subset list of n songs (dictionaries), given a (larger) list of songs (dictionaries)."""
+    """Returns a subset list of n random songs (dictionaries), given a (larger) list of songs (dictionaries)."""
     retList = []
-    for i in range(n):
+    for i in range(n): #do this n times...
         try:
-            retList.append( relevantInfoList[i] )
-        except IndexError: #if there are less than n songs returned in json
+            retList.append( choice(relevantInfoList) ) #Return a random element from a non-empty sequence
+        except IndexError: #if bad tag --> no data returned from API call
             break
     return retList
 

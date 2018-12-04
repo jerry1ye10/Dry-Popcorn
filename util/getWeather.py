@@ -8,8 +8,14 @@ import json #stdlib
 
 # util file for sending OpenWeatherMap API requests, returning relevant information
 
+#get API key from WEATHER_API_KEY.txt
+WEATHER_API_KEY = open('WEATHER_API_KEY.txt', 'r') #file object
+WEATHER_API_KEY = WEATHER_API_KEY.read() #contents of file
+WEATHER_API_KEY = WEATHER_API_KEY.replace('\n', '') #remove newline characters
+
+# print( repr(WEATHER_API_KEY) ) #for debugging
+
 # https://api.openweathermap.org/data/2.5/weather?zip=10282,us&appid=ba47437a11844f86e94ca05cf41ea0cd&units=imperial
-WEATHER_API_KEY = 'ba47437a11844f86e94ca05cf41ea0cd'
 BASE_URL = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=' + WEATHER_API_KEY
 
 def getURLZipCode (zip_code):
