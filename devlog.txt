@@ -160,3 +160,9 @@ raymondW -- 2018-12-03 21:26
 - Worked on the getting weather algorithm in util/getWeather.py
 - Worked on the getting music algorithm in util/getMusic.py
 - Added instructions on how to procure API keys and make API calls in README
+==============================================================
+jasonL -- 2018-12-04 05:08
+--------------------------------------------------------------
+- Did css for the search results
+
+==============================================================

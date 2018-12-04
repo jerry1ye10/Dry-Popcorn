@@ -14,7 +14,7 @@ MUSIC_API_KEY = '7af285e176cbccfeb8a1b249c84479a1'
 # each key applies to the range from key to key+9, inclusive
 # exceptions:
 #     * key 100 applies to all temperatures >=100
-#     * key  10 applies to all temperatures <20 
+#     * key  10 applies to all temperatures <20
 TEMP_TAGS = {
     100 : ['summer', 'pop', 'metal'],
      90 : ['summer', 'electronic'],
@@ -58,8 +58,9 @@ def getRelevantInfoList (dataDict):
             'name'   : track['name'],
             'artist' : track['artist']['name'],
             'url'    : track['url'],
+            'image'  : track['image'][2]['#text']
         })
-    
+
     return relevantInfoList
 
 # ... for debugging ...
