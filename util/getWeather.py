@@ -9,7 +9,7 @@ import json #stdlib
 # util file for sending OpenWeatherMap API requests, returning relevant information
 
 #get API key from WEATHER_API_KEY.txt
-WEATHER_API_KEY = open('WEATHER_API_KEY.txt', 'r') #file object
+WEATHER_API_KEY = open('./WEATHER_API_KEY.txt', 'r') #file object
 WEATHER_API_KEY = WEATHER_API_KEY.read() #contents of file
 WEATHER_API_KEY = WEATHER_API_KEY.replace('\n', '') #remove newline characters
 
