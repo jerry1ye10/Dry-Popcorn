@@ -3,7 +3,7 @@
 #P01 -- ArRESTed Development
 #2018-11-26
 
-from urllib import request #stdlib
+from urllib import request, error #stdlib
 import json #stdlib
 import os
 import random
@@ -119,9 +119,21 @@ def favorites():
 @app.route("/search", methods=["GET"])
 def search():
     '''Renders the search page.'''
-    city_name = frequest.args.get("q")
-    if (city_name != ''):
-        weather_dict = getWeather.getDict(getWeather.getURLCityName(city_name))
+    location = frequest.args.get("q")
+    if (len(frequest.args) == 2):
+        weather_dict = {}
+        if (location.isdigit()):
+            try:
+                weather_dict = getWeather.getDict(getWeather.getURLZipCode(location))
+            except error.HTTPError:
+                flash("The zipcode that was entered does not exist in the US.", "error")
+                return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
+        else:
+            try:
+                weather_dict = getWeather.getDict(getWeather.getURLCityName(location))
+            except error.HTTPError:
+                flash("The city name that was entered does not exist. Please check for spaces.","error")
+                return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
         weather_info = getWeather.getRelevantInfoDict(weather_dict)
         music_tags = getMusic.getMusicTags( weather_info['temp'] )
         suggested_songs = []
