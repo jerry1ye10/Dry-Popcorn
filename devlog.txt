@@ -130,6 +130,11 @@ jerryY -- 2018-11-30 12:56
 - Updated design doc to reflect changes in development order
 
 ==============================================================
+raymondW -- 2018-12-02 10:35
+--------------------------------------------------------------
+- Worked on the getting weather algorithm in util/getWeather.py
+
+==============================================================
 jasonL -- 2018-12-02 21:43
 --------------------------------------------------------------
 - Made registration and login work. Worked on design of homepage.
@@ -150,3 +155,8 @@ jasonL -- 2018-12-03 13:06
 - Added docstring to app.py and fixed some css.
 
 ==============================================================
+raymondW -- 2018-12-03 21:26
+--------------------------------------------------------------
+- Worked on the getting weather algorithm in util/getWeather.py
+- Worked on the getting music algorithm in util/getMusic.py
+- Added instructions on how to procure API keys and make API calls in README
