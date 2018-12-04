@@ -20,7 +20,7 @@
   </form>
   <br>
   {% if has_searched %}
-    <p>Search results for {{city_info.locationName}} with {{city_info.temp}} degrees F</p>
+    <p>Search results for {{city_info.locationName}}, {{city_info.country}} with {{city_info.temp}} degrees F</p>
     <div class="container">
       <div class="row">
         {% for song in song_list %}
