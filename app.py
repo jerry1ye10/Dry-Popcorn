@@ -11,7 +11,7 @@ import random
 from flask import Flask, render_template, session, url_for, redirect, flash
 from flask import request as frequest
 
-from util import db
+from util import db, getWeather, getMusic
 
 app = Flask(__name__) # instantiates an instance of Flask
 app.secret_key = os.urandom(32)
@@ -119,7 +119,24 @@ def favorites():
 @app.route("/search", methods=["GET"])
 def search():
     '''Renders the search page.'''
-    return render_template("search.html", isLoggedIn = is_logged_in())
+    city_name = frequest.args.get("q")
+    if (city_name != ''):
+        weather_dict = getWeather.getDict(getWeather.getURLCityName(city_name))
+        weather_info = getWeather.getRelevantInfoDict(weather_dict)
+        music_tags = getMusic.getMusicTags( weather_info['temp'] )
+        suggested_songs = []
+        for tag in music_tags:
+            url = getMusic.getURL( tag )
+            json_dict = getMusic.getDict( url )
+            rel_info_list = getMusic.getRelevantInfoList( json_dict )
+            songs_from_this_tag = getMusic.getNSongs( rel_info_list, 10 )
+            for song in songs_from_this_tag: #getNSongs() returns a list
+                suggested_songs.append(song)
+        return render_template("search.html", isLoggedIn = is_logged_in(),
+                                              has_searched= True,
+                                              song_list = suggested_songs,
+                                              city_info= weather_info)
+    return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
 
 if __name__ == "__main__":
     app.debug = True
