@@ -18,6 +18,7 @@ footer{
 .navbar{
   background: #F3FFBD;
   box-shadow: 2px 2px 10px 2px grey;
+  padding: 6px 15px;
 }
 
 .main{
@@ -82,6 +83,42 @@ footer{
   font-weight: bold;
   font-size: 15px;
   margin: 0px;
+}
+
+.song{
+  margin: 20px 5%;
+  box-shadow: 3px 3px 3px grey;
+  background: #70C1B3;
+}
+
+.song-image{
+  height: 70%;
+  width: 80%;
+  margin: 20px 0px 6px 0px;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.song-link{
+  text-decoration: none;
+}
+
+.song-link:hover{
+  text-decoration: none;
+}
+
+.song-title{
+  color: black;
+  font-family: "Helvetica";
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.song-artist{
+  color: black;
+  font-family: "Helvetica";
+  font-size: 15px;
+  text-decoration: none;
 }
 
 #register{

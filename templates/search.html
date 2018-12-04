@@ -13,72 +13,67 @@
     <p class="{{category}}">{{each}}<p>
   {% endfor %}
   <form action="/auth" method="POST">
-    <p class="login-info">Type in a city name to find a suggested song!</p>
+    <p class="login-info">Type in a city name to find a song based on its weather!</p>
     <input type="text" name="search">
     <br><br>
     <input type="submit" id="submit" name="submit" value="Search">
   </form>
+  <br>
   <!--
     Use bootstrap to display different formats of songs. Needs a variable to know
     that it has to display the songs
     -->
+    <!--
+    {#
+      {% if has_searched %}
+      //display all that below
+      <p>Search results for {{city}} that has weather and temperature</p>
+    #}
+    -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="song">
+            <a class="song-link" href="#">
+              <img class="song-image"
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
+              <br>
+              <span class="song-title">Light It Up</span>
+              <br>
+              <span class="song-artist">Major Lazer</span>
+            </a>
+            <!--
+            <form class="add" action="#" method="post">
+              <input type="hidden" name="song_name" value="{{song.title}}">
+              <input type="hidden" name="song_artist" value="{{song.artist}}">
+              <input type="hidden" name="song_link" value="{{song.link}}">
+              <input type="submit" name="submit" value="favorite">
+            </form>
+            -->
+          </div>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 song">
-          <img width="250px" height="250px" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg/220px-Light_It_Up_%28Remix%29_Major_Lazer_Cover.jpg" alt="Cover Image">
-          <p>Light It Up</p>
-          <p>Major Lazer</p>
-        </div>
+
+
+
+          <!--
+          {#
+          {% for song in song-list %}
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="song">
+            <a class="song-link" href="{{song.link}}">
+              <img class="song-image" width="250px" height="250px"
+              src="{{song.image_url}}" alt="Cover Image">
+              <br>
+              <span class="song-title">{{song.title}}</span>
+              <br>
+              <span class="song-artist">{{song.artist}}</span>
+            </a>
+            </div>
+          </div>
+          {% endfor %}
+          #}
+          -->
+
       </div>
     </div>
 </div>
