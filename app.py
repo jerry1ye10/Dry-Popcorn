@@ -3,7 +3,7 @@
 #P01 -- ArRESTed Development
 #2018-11-26
 
-from urllib import request #stdlib
+from urllib import request, error #stdlib
 import json #stdlib
 import os
 import random
@@ -121,38 +121,33 @@ def search():
     '''Renders the search page.'''
     location = frequest.args.get("q")
     if (len(frequest.args) == 2):
+        weather_dict = {}
         if (location.isdigit()):
-            weather_dict = getWeather.getDict(getWeather.getURLCityName(location))
-            weather_info = getWeather.getRelevantInfoDict(weather_dict)
-            print(weather_info)
-            music_tags = getMusic.getMusicTags( weather_info['temp'] )
-            suggested_songs = []
-            for tag in music_tags:
-                print(tag)
-                url = getMusic.getURL( tag )
-                json_dict = getMusic.getDict( url )
-                rel_info_list = getMusic.getRelevantInfoList( json_dict )
-                songs_from_this_tag = getMusic.getNSongs( rel_info_list, 10 )
-                for song in songs_from_this_tag: #getNSongs() returns a list
-                    suggested_songs.append(song)
+            try:
+                weather_dict = getWeather.getDict(getWeather.getURLZipCode(location))
+            except error.HTTPError:
+                flash("The zipcode that was entered does not exist in the US.", "error")
+                return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
         else:
-            weather_dict = getWeather.getDict(getWeather.getURLCityName(location))
-            weather_info = getWeather.getRelevantInfoDict(weather_dict)
-            print(weather_info)
-            music_tags = getMusic.getMusicTags( weather_info['temp'] )
-            suggested_songs = []
-            for tag in music_tags:
-                print(tag)
-                url = getMusic.getURL( tag )
-                json_dict = getMusic.getDict( url )
-                rel_info_list = getMusic.getRelevantInfoList( json_dict )
-                songs_from_this_tag = getMusic.getNSongs( rel_info_list, 10 )
-                for song in songs_from_this_tag: #getNSongs() returns a list
-                    suggested_songs.append(song)
-            return render_template("search.html", isLoggedIn = is_logged_in(),
-                                                  has_searched= True,
-                                                  song_list = suggested_songs,
-                                                  city_info= weather_info)
+            try:
+                weather_dict = getWeather.getDict(getWeather.getURLCityName(location))
+            except error.HTTPError:
+                flash("The city name that was entered does not exist. Please check for spaces.","error")
+                return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
+        weather_info = getWeather.getRelevantInfoDict(weather_dict)
+        music_tags = getMusic.getMusicTags( weather_info['temp'] )
+        suggested_songs = []
+        for tag in music_tags:
+            url = getMusic.getURL( tag )
+            json_dict = getMusic.getDict( url )
+            rel_info_list = getMusic.getRelevantInfoList( json_dict )
+            songs_from_this_tag = getMusic.getNSongs( rel_info_list, 10 )
+            for song in songs_from_this_tag: #getNSongs() returns a list
+                suggested_songs.append(song)
+        return render_template("search.html", isLoggedIn = is_logged_in(),
+                                              has_searched= True,
+                                              song_list = suggested_songs,
+                                              city_info= weather_info)
     return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
 
 if __name__ == "__main__":
