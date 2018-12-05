@@ -54,7 +54,7 @@ We are using both the Last.fm API and the OpenWeatherMap API.
 1. Verify your e-mail by clicking the verification link in your e-mail.
 2. After verifying your e-mail, you will be prompted to register your first application. Enter an application name and description.
 3. You will be then given an API key registered to your account for the registered application.
-4. Replace any existing text with your API key in `util/MUSIC_API_KEY.txt`.
+4. Put the API key in a text file named 'MUSIC_API_KEY.txt' in the root directory of the cloned repo.
 5. To send test API requests, consult the [API documentation](https://www.last.fm/api) for the appropriate API request URL and parameters you need for the desired information. Most commonly, you will need to include the key-value pair `api_key=YOUR_API_KEY_HERE`.
 
 *Example:* `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag=christmas&api_key=YOUR_API_KEY_HERE`.
@@ -63,7 +63,7 @@ We are using both the Last.fm API and the OpenWeatherMap API.
 0. Sign up for an OpenWeatherMap API account [here](https://home.openweathermap.org/users/sign_up).
 1. You may be prompted to answer how you will use the API. 
 2. Your API key will be sent to your e-mail.
-3. Replace any existing text with your API key in `util/WEATHER_API_KEY.txt`.
+3. Put the API key in a text file named 'WEATHER_API_KEY.txt' in the root directory of the cloned repo.
 4. To send test API requests, consult the appropriate [API documentation](https://openweathermap.org/api) for the appropriate API request URL and parameters for the information you want to obtain. Most commonly, you will need to include the key-value pair `appid=YOUR_API_KEY_HERE`.
 
 *Example:* `https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=YOUR_API_KEY_HERE&zip=10282,us`

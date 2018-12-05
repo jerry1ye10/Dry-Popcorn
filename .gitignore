@@ -131,4 +131,6 @@ ehthumbs.db
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 dc/
-B
+
+# API keys
+*API_KEY.txt
