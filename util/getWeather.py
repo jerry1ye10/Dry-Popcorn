@@ -22,7 +22,7 @@ def getURLZipCode (zip_code):
     """Returns the API request URL for a given US ZIP code in the form of a string or an int."""
     return BASE_URL + '&zip={},us'.format(zip_code)
 
-# print( getURLZipCode(10282) ) #for debugging
+print( getURLZipCode(10282) ) #for debugging
 
 def getURLCityName (city_name):
     """Returns the API request URL for a given city name in the form of a string."""
@@ -53,9 +53,15 @@ def getRelevantInfoDict (dataDict):
         'locationName' : dataDict['name'],
         'country'      : dataDict['sys']['country'],
         'temp'         : dataDict['main']['temp'],
+        'condition'    : dataDict['weather'][0]['main'],
         'windSpeed'    : dataDict['wind']['speed'],
         'percentCloud' : dataDict['clouds']['all'],
     }
+
+# ... for debugging ...
+# d = getDict( getURLZipCode(10282) )
+# relInfo = getRelevantInfoDict(d)
+# print( relInfo['condition'] )
 
 # PUTTING IT TOGETHER - DEBUGGING BELOW
 #    BAD PRACTICE TO import HERE ... DO NOT FOLLOW ...

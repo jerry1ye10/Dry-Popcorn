@@ -39,7 +39,7 @@ def getURL (tag):
     URL = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag={}&api_key={}'.format(tag, MUSIC_API_KEY)
     return URL
 
-print (getURL('christmas')) #for debugging
+# print (getURL('christmas')) #for debugging
 
 def getDict (url):
     """Returns the data dictionary to hold the data held in the JSON object string.
