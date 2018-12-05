@@ -83,8 +83,7 @@ def authenticate():
                 return redirect(url_for("home"))
         flash("Username or password is incorrect. Please try again.","error")
         return redirect(url_for("login"))
-    #delete this afterwards, temp
-    return redirect(url_for("search"))
+    return redirect(url_for("home"))
 
 @app.route("/logout")
 def logout():
