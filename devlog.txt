@@ -188,3 +188,10 @@ raymondW -- 2018-12-04 21:13
 - Conducted code tour during csDojo session this afternoon
 - Added weather condition retrieval to weather relevant info dict in util/getWeather.py
 
+==============================================================
+jasonL -- 2018-12-05 06:11
+--------------------------------------------------------------
+- Made the favorites page display stuff and created code for
+adding and removing favorites.
+
+==============================================================

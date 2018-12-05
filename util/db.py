@@ -14,13 +14,19 @@ def add_user(username,password):
     db.close()
 
 #put both username and user_id in session
-def add_favorite(user_id, song_name, song_link):
-    '''Takes in the user_id, song_name, and song_link
+def add_favorite(user_id, song_name, song_artist, song_url, song_image):
+    '''Takes in the user_id, song_name, song_url and song_image
     and puts it into the database table "favorites".'''
+    #Checks if the user already has favorited a song.
+    favorite_list = get_favorites_from_user_id(user_id)
+    for song in favorite_list:
+        if (song["name"] == song_name and song["url"] == song_url and
+            song["artist"] == song_artist and song["image"] == song_image):
+            return
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "INSERT INTO favorites(user_id,song_name,song_link)VALUES(?,?,?);"
-    c.execute(command,(user_id,song_name,song_link))
+    command = "INSERT INTO favorites(user_id,song_name,song_artist,song_url,song_image)VALUES(?,?,?,?,?);"
+    c.execute(command,(user_id,song_name,song_artist,song_url,song_image))
     db.commit()
     db.close()
 
@@ -49,3 +55,40 @@ def check_password(username,password):
     output = c.fetchall()
     db.close()
     return output[0][0] == password
+
+def get_id_from_username(username):
+    '''Returns the id given a username'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id FROM users WHERE username = ?;"
+    c.execute(command,(username,))
+    output = c.fetchall()
+    db.close()
+    return output[0][0]
+
+def get_favorites_from_user_id(id):
+    '''Returns the list of dictionary of songs based on user ID'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT song_name,song_artist,song_url,song_image FROM favorites WHERE user_id = ?;"
+    c.execute(command,(id,))
+    output = c.fetchall()
+    db.close()
+    output_dict = []
+    for song in output:
+        output_dict.append({
+            "name" : song[0],
+            "artist" : song[1],
+            "url" : song[2],
+            "image" : song[3],
+        })
+    return output_dict
+
+def remove_favorite(user_id, song_name, song_artist, song_url, song_image):
+    '''Deletes a favorite from the database'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "DELETE FROM favorites WHERE user_id = ? AND song_name = ? AND song_artist = ? AND song_url = ? AND song_image = ?"
+    c.execute(command,(user_id,song_name,song_artist,song_url,song_image))
+    db.commit()
+    db.close()

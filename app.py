@@ -15,27 +15,10 @@ from util import db, getWeather, getMusic
 
 app = Flask(__name__) # instantiates an instance of Flask
 app.secret_key = os.urandom(32)
-# https://api.openweathermap.org/data/2.5/weather?zip=10282,us&appid=ba47437a11844f86e94ca05cf41ea0cd&units=imperial
-
-API_KEY = '7af285e176cbccfeb8a1b249c84479a1'
-
-
-TAG = 'hot'
-URL = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag=' + TAG + '&api_key=' + API_KEY
-
-
-u = request.urlopen(URL)
-response = u.read()
-data = json.loads(response)
-
-SAMPLE_NAME = data['tracks']['track'][0]['name']
-SAMPLE_ARTIST = data['tracks']['track'][0]['artist']['name']
-
-print (URL)
 
 def is_logged_in():
     '''Returns True if the user is logged in. False otherwise.'''
-    return "username" in session
+    return "id" in session
 
 @app.route("/") #Linking a function to a route
 def home():
@@ -94,7 +77,7 @@ def authenticate():
         password_input = frequest.form.get("password")
         if (username_input in username_list):
             if (db.check_password(username_input,password_input)):
-                session["username"] = username_input
+                session["id"] = db.get_id_from_username(username_input)
                 return redirect(url_for("home"))
         flash("Username or password is incorrect. Please try again.","error")
         return redirect(url_for("login"))
@@ -105,7 +88,7 @@ def authenticate():
 def logout():
     '''Removes the current session and redirects users back to login page.'''
     if (is_logged_in()):
-        session.pop("username")
+        session.pop("id")
         return redirect(url_for("login"))
     return redirect(url_for("home"))
 
@@ -114,7 +97,34 @@ def favorites():
     '''Redirects the user to the login page if it isn't logged in.'''
     if (not is_logged_in()):
         return redirect(url_for("login"))
-    return render_template("favorites.html", isLoggedIn = is_logged_in())
+    song_info = db.get_favorites_from_user_id(session["id"])
+    return render_template("favorites.html", isLoggedIn = is_logged_in(),
+                                             song_dict = song_info,
+                                             display = len(song_info) != 0)
+
+@app.route("/change_favorite", methods=["POST"])
+def change_favorite():
+    '''Handles the favoriting of songs by a user'''
+    if (not is_logged_in()):
+        return redirect(url_for("login"))
+    #Add favorites
+    submit_type = frequest.form.get("submit")
+    if (submit_type == "Favorite"):
+        song_name = frequest.form.get("song_name")
+        song_artist = frequest.form.get("song_artist")
+        song_url = frequest.form.get("song_url")
+        song_image = frequest.form.get("song_image")
+        db.add_favorite(session["id"],song_name, song_artist, song_url, song_image)
+        return redirect(url_for("favorites"))
+    elif (submit_type == "Unfavorite"):
+        song_name = frequest.form.get("song_name")
+        song_artist = frequest.form.get("song_artist")
+        song_url = frequest.form.get("song_url")
+        song_image = frequest.form.get("song_image")
+        db.remove_favorite(session["id"],song_name, song_artist, song_url, song_image)
+        return redirect(url_for("favorites"))
+    return redirect(url_for("home"))
+    #remove favorite
 
 @app.route("/search", methods=["GET"])
 def search():

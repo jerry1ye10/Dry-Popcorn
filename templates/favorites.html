@@ -8,9 +8,34 @@
 <div class="main">
   <h1>Favorites</h1>
   <br>
-    <p class="login-info">Here are your favorites!</p>
-    <!--
-      Use bootstrap to display different formats of favorite songs.
-      -->
+  <p class="login-info">Here are your favorites!</p>
+  <br><br>
+  {% if display %}
+  <div class="container">
+    <div class="row">
+      {% for song in song_dict %}
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="song">
+            <a class="song-link" href="{{song.url}}" target="_blank">
+              <img class="song-image" width="250px" height="250px"
+              src="{{song.image}}" alt="Cover Image">
+              <br>
+              <span class="song-title">{{song.name}}</span>
+              <br>
+              <span class="song-artist">{{song.artist}}</span>
+            </a>
+            <form action="/change_favorite" method="post">
+              <input type="hidden" name="song_name" value="{{song.name}}">
+              <input type="hidden" name="song_artist" value="{{song.artist}}">
+              <input type="hidden" name="song_url" value="{{song.url}}">
+              <input type="hidden" name="song_image" value="{{song.image}}">
+              <input class="unfavorite-button" type="submit" name="submit" value="Unfavorite">
+            </form>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

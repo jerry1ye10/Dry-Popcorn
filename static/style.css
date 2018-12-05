@@ -121,6 +121,40 @@ footer{
   text-decoration: none;
 }
 
+.favorite-button{
+  margin: 5px;
+  font-family: "Helvetica";
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.favorite-button:hover{
+  margin: 5px;
+  font-family: "Helvetica";
+  font-size: 15px;
+  text-decoration: none;
+  background: green;
+  color: white;
+  border-color: green
+}
+
+.unfavorite-button{
+  margin: 5px;
+  font-family: "Helvetica";
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.unfavorite-button:hover{
+  margin: 5px;
+  font-family: "Helvetica";
+  font-size: 15px;
+  text-decoration: none;
+  background: red;
+  color: white;
+  border-color: red
+}
+
 #register{
   font-family: "Helvetica";
   font-size: 13px;
