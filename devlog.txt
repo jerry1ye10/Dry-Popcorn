@@ -200,6 +200,11 @@ jasonL -- 2018-12-05 10:03
 - Added git ignore for api files and made passwords look like dots.
 
 ==============================================================
+jiajieM -- 2018-12-05 13:17
+--------------------------------------------------------------
+- Deleted "favorit" page and tried to add comments
+
+==============================================================
 raymondW -- 2018-12-05 13:27
 --------------------------------------------------------------
 - Fixed relative links in util/*.py files to be in the perspective from app.py (root directory)
