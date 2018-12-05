@@ -178,7 +178,13 @@ raymondW -- 2018-12-04 13:22
 - Updated README re: storing API keys
 
 ==============================================================
+jiajieM -- 2018-12-04 13:17
+--------------------------------------------------------------
+-added another branch, "favorit", and started working on the favorites page
+
+==============================================================
 raymondW -- 2018-12-04 21:13
 --------------------------------------------------------------
 - Conducted code tour during csDojo session this afternoon
 - Added weather condition retrieval to weather relevant info dict in util/getWeather.py
+
