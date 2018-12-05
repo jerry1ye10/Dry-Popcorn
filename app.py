@@ -64,7 +64,11 @@ def authenticate():
         username_input = frequest.form.get("username")
         password_input = frequest.form.get("password")
         c_password_input = frequest.form.get("confirm_password")
-        if (username_input in username_list):
+        if (len(username_input.replace(" ","")) < 4):
+            flash("Username has to be at least 4 characters long.","error")
+        elif (len(password_input.replace(" ","")) < 4):
+            flash("Password has to be at least 4 characters long.","error")
+        elif username_input in username_list:
             flash("Username already exists. Please try a different username.","error")
         #check that password confirm
         elif (password_input != c_password_input):
