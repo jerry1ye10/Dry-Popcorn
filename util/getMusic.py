@@ -64,7 +64,7 @@ def getRelevantInfoList (dataDict):
             'name'   : track['name'],
             'artist' : track['artist']['name'],
             'url'    : track['url'],
-            'image'  : track['image'][3]['#text']
+            'image'  : track['image'][2]['#text']
         })
 
     return relevantInfoList

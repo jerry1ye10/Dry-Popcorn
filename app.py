@@ -49,6 +49,8 @@ def login():
 @app.route("/register")
 def register():
     '''Display the register page.'''
+    if (is_logged_in()):
+        redirect(url_for("home"))
     return render_template("register.html", isLoggedIn = is_logged_in())
 
 @app.route("/auth", methods=["POST"])
