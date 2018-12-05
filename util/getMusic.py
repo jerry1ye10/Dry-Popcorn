@@ -10,7 +10,7 @@ from random import choice #stdlib
 # util file for sending last.fm API requests, returning relevant information
 
 #get API key from MUSIC_API_KEY.txt
-MUSIC_API_KEY = open('./MUSIC_API_KEY.txt', 'r') #file object
+MUSIC_API_KEY = open('./MUSIC_API_KEY.txt', 'r') #file object from perspective of app.py
 MUSIC_API_KEY = MUSIC_API_KEY.read() #contents of file
 MUSIC_API_KEY = MUSIC_API_KEY.replace('\n', '') #remove newline characters
 
