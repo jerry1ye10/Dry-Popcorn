@@ -10,7 +10,7 @@ from random import choice #stdlib
 # util file for sending last.fm API requests, returning relevant information
 
 #get API key from MUSIC_API_KEY.txt
-MUSIC_API_KEY = open('util/MUSIC_API_KEY.txt', 'r') #file object
+MUSIC_API_KEY = open('MUSIC_API_KEY.txt', 'r') #file object
 MUSIC_API_KEY = MUSIC_API_KEY.read() #contents of file
 MUSIC_API_KEY = MUSIC_API_KEY.replace('\n', '') #remove newline characters
 
@@ -33,6 +33,8 @@ TEMP_TAGS = {
      20 : ['winter', 'sad', 'slow'],
      10 : ['winter', 'christmas', 'holiday'],
 }
+
+
 
 def getURL (tag):
     """Returns the API request URL for a given tag in the form of a string."""
@@ -64,7 +66,7 @@ def getRelevantInfoList (dataDict):
             'name'   : track['name'],
             'artist' : track['artist']['name'],
             'url'    : track['url'],
-            'image'  : track['image'][2]['#text']
+            'image'  : track['image'][3]['#text']
         })
 
     return relevantInfoList

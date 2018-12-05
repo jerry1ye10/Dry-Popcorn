@@ -9,7 +9,7 @@ import json #stdlib
 # util file for sending OpenWeatherMap API requests, returning relevant information
 
 #get API key from WEATHER_API_KEY.txt
-WEATHER_API_KEY = open('util/WEATHER_API_KEY.txt', 'r') #file object
+WEATHER_API_KEY = open('WEATHER_API_KEY.txt', 'r') #file object
 WEATHER_API_KEY = WEATHER_API_KEY.read() #contents of file
 WEATHER_API_KEY = WEATHER_API_KEY.replace('\n', '') #remove newline characters
 
@@ -67,22 +67,22 @@ def getRelevantInfoDict (dataDict):
 #    BAD PRACTICE TO import HERE ... DO NOT FOLLOW ...
 #    FOR PROOF OF CONCEPT ONLY!
 
-# import getMusic
+import getMusic
 
-# d = getDict( getURLZipCode(10282) )
-# relInfoDict = getRelevantInfoDict( d )
-# print( relInfoDict['temp'] ) #current temp
-# musicTags = getMusic.getMusicTags( relInfoDict['temp'] )
-# musicTags.append("asdkljasjdkasjdsak") #testing bad tag
-# print (musicTags) #music tags for current temp
+d = getDict( getURLZipCode(10282) )
+relInfoDict = getRelevantInfoDict( d )
+print( relInfoDict['temp'] ) #current temp
+musicTags = getMusic.getMusicTags( relInfoDict['temp'] )
+musicTags.append("asdkljasjdkasjdsak") #testing bad tag
+print (musicTags) #music tags for current temp
 
-# suggestedSongs = []
-# for tag in musicTags:
-#     url = getMusic.getURL( tag )
-#     jsonDict = getMusic.getDict( url )
-#     relInfoList = getMusic.getRelevantInfoList( jsonDict )
-#     songsFromThisTag = getMusic.getNSongs( relInfoList, 2 )
-#     for song in songsFromThisTag: #getNSongs() returns a list
-#         suggestedSongs.append(song)
+suggestedSongs = []
+for tag in musicTags:
+    url = getMusic.getURL( tag )
+    jsonDict = getMusic.getDict( url )
+    relInfoList = getMusic.getRelevantInfoList( jsonDict )
+    songsFromThisTag = getMusic.getNSongs( relInfoList, 2 )
+    for song in songsFromThisTag: #getNSongs() returns a list
+        suggestedSongs.append(song)
 
-# print( suggestedSongs )
+print( suggestedSongs )
