@@ -21,23 +21,26 @@ API_KEY = '7af285e176cbccfeb8a1b249c84479a1'
 
 
 TAG = 'hot'
-URL = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag=' + TAG + '&api_key=' + API_KEY
+URL = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&format=json&tag=' + TAG + '&api_key=' + API_KEY # last.fm API url
 
 
-u = request.urlopen(URL)
-response = u.read()
+
+u = request.urlopen(URL) 
+response = u.read() 
 data = json.loads(response)
+# converts data from url to dict
 
 SAMPLE_NAME = data['tracks']['track'][0]['name']
 SAMPLE_ARTIST = data['tracks']['track'][0]['artist']['name']
+# the dict pathway to the sample's name and artist
 
 print (URL)
 
-def is_logged_in():
+def is_logged_in(): 
     '''Returns True if the user is logged in. False otherwise.'''
     return "username" in session
 
-@app.route("/") #Linking a function to a route
+@app.route("/") # linking a function to a route
 def home():
     '''Renders the homepage with random cities.'''
     cities = ["New York", "Los Angeles", "Miami", "Beijing", "Milan",
