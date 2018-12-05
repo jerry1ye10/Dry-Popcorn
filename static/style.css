@@ -1,5 +1,5 @@
 body {
-  background:#B2DBBF;
+  background:#F3FFBD/*#B2DBBF*/;
 }
 
 h1{
@@ -16,14 +16,14 @@ footer{
 }
 
 .navbar{
-  background: #F3FFBD;
+  background: #B2DBBF/*#F3FFBD*/;
   box-shadow: 2px 2px 10px 2px grey;
   padding: 6px 15px;
 }
 
 .main{
   text-align: center;
-  margin: 30px 30px;
+  margin: 60px 30px;
 }
 
 .nav-link{
@@ -37,7 +37,7 @@ footer{
 
 .nav-link:hover{
   font-family: "Helvetica";
-  color: #B2DBBF;
+  color: #247BA0;
   font-weight: bold;
   font-size: 17px;
   padding: 0px 6px;
