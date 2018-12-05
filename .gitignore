@@ -134,3 +134,6 @@ dc/
 
 # API keys
 *API_KEY.txt
+
+# db files
+*.db

@@ -34,10 +34,17 @@ Now, install all of the requirements needed to run this project. This command si
 (dc)$ pip install -r requirements.txt
 ```
 
+Now, to prepare the database, run the following commands in the terminal:
+```
+(dc)$ make remove
+(dc)$ make db
+``` 
+
 Now, run the python file to start the Flask server:
 ```
 (dc)$ python3 app.py
 ```
+
 
 Finally, open your web browser and open `localhost:5000`.
 

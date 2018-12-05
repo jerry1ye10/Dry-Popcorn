@@ -200,3 +200,9 @@ jasonL -- 2018-12-05 10:03
 - Added git ignore for api files and made passwords look like dots.
 
 ==============================================================
+raymondW -- 2018-12-05 13:27
+--------------------------------------------------------------
+- Fixed relative links in util/*.py files to be in the perspective from app.py (root directory)
+- Removed the API keys from the GitHub repo
+- Modified .gitignore to ignore API key .txt files (*_API_KEY.txt)
+- Modified README.md to indicate make/db preparing instructions
