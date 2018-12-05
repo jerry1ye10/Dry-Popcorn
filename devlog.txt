@@ -211,3 +211,11 @@ raymondW -- 2018-12-05 13:27
 - Removed the API keys from the GitHub repo
 - Modified .gitignore to ignore API key .txt files (*_API_KEY.txt)
 - Modified README.md to indicate make/db preparing instructions
+
+==============================================================
+jasonL -- 2018-12-05 14:29
+--------------------------------------------------------------
+- Made restrictions on username and password. Only 4 characters or
+more are allowed.
+
+==============================================================
