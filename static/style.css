@@ -26,6 +26,10 @@ footer{
   margin: 60px 30px;
 }
 
+.city-link{
+  font-size: 21px;
+}
+
 .nav-link{
   font-family: "Helvetica";
   color: #70C1B3;

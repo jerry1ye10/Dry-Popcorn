@@ -9,9 +9,9 @@
 
   <h1>Welcome To Tuney Forecast</h1>
 
-  Choose from this list of cities or search for any city.<br>
+  Choose from this list of cities or search for any city.<br><br>
   {% for city in random_cities %}
-    <a href="/search?q={{city}}&submit=Search&mood=">{{city}}</a><br>
+    <a class="city-link" href="/search?q={{city}}&submit=Search&mood=">{{city}}</a><br>
   {% endfor%}
 </div>
 {% endblock %}
