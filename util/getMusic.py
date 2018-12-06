@@ -62,7 +62,7 @@ def getDict (url):
 # print ( d['tracks']['track'][0]['artist']['name'] )
 
 def getRelevantInfoList (dataDict):
-    """Returns a dictionary of the relevant/useful information from JSON object string returned from API call given in the form of a dictionary."""
+    """Returns a list of dictionaries (songs) with the relevant/useful information from JSON object string returned from API call given in the form of a dictionary."""
     relevantInfoList = []
     apiAllTracks = dataDict['tracks']['track']
     for track in apiAllTracks:
@@ -84,7 +84,11 @@ def getNSongs (relevantInfoList, n):
     retList = []
     for i in range(n): #do this n times...
         try:
-            retList.append( choice(relevantInfoList) ) #Return a random element from a non-empty sequence
+            getRandomSong = choice(relevantInfoList)
+            if getRandomSong in retList: #if random song already in list
+                continue #skip (go to next iteration of for-loop)
+            else:
+                retList.append( choice(relevantInfoList) ) #Return a random element from a non-empty sequence
         except IndexError: #if bad tag --> no data returned from API call
             break
     return retList
