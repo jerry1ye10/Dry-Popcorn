@@ -10,10 +10,14 @@ from random import choice #stdlib
 # util file for sending last.fm API requests, returning relevant information
 
 #get API key from MUSIC_API_KEY.txt
-MUSIC_API_KEY = open('./MUSIC_API_KEY.txt', 'r') #file object from perspective of app.py
-MUSIC_API_KEY = MUSIC_API_KEY.read() #contents of file
-MUSIC_API_KEY = MUSIC_API_KEY.replace('\n', '') #remove newline characters
-
+try:
+    MUSIC_API_KEY = open('./MUSIC_API_KEY.txt', 'r') #file object from perspective of app.py
+    MUSIC_API_KEY = MUSIC_API_KEY.read() #contents of file
+    MUSIC_API_KEY = MUSIC_API_KEY.replace('\n', '') #remove newline characters
+except FileNotFoundError:
+    print('You are missing the last.fm API key! Read more: https://github.com/jerry1ye10/Dry-Popcorn/')
+    exit()
+    
 # print( repr(MUSIC_API_KEY) ) #for debugging
 
 # dictionary mapping temperature changes to preset music tags
