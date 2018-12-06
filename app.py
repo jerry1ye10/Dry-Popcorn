@@ -162,7 +162,7 @@ def search():
             url = getMusic.getURL( tag )
             json_dict = getMusic.getDict( url )
             rel_info_list = getMusic.getRelevantInfoList( json_dict )
-            songs_from_this_tag = getMusic.getNSongs( rel_info_list, 10 )
+            songs_from_this_tag = getMusic.getNSongs( rel_info_list, 20 )
             for song in songs_from_this_tag: #getNSongs() returns a list
                 suggested_songs.append(song)
         return render_template("search.html", isLoggedIn = is_logged_in(),
