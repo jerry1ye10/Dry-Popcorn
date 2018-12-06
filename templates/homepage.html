@@ -11,7 +11,7 @@
 
   Choose from this list of cities or search for any city.<br>
   {% for city in random_cities %}
-    <a href="/search?q={{city}}&submit=Search">{{city}}</a><br>
+    <a href="/search?q={{city}}&submit=Search&mood=">{{city}}</a><br>
   {% endfor%}
 </div>
 {% endblock %}

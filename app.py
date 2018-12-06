@@ -134,23 +134,29 @@ def change_favorite():
 @app.route("/search", methods=["GET"])
 def search():
     '''Renders the search page.'''
-    location = frequest.args.get("q")
-    if (len(frequest.args) == 2):
-        weather_dict = {}
-        if (location.isdigit()):
-            try:
-                weather_dict = getWeather.getDict(getWeather.getURLZipCode(location))
-            except error.HTTPError:
-                flash("The zipcode that was entered does not exist in the US.", "error")
-                return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
-        else:
-            try:
-                weather_dict = getWeather.getDict(getWeather.getURLCityName(location))
-            except error.HTTPError:
-                flash("The city name that was entered does not exist. Please check for spaces.","error")
-                return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
-        weather_info = getWeather.getRelevantInfoDict(weather_dict)
-        music_tags = getMusic.getMusicTags( weather_info['temp'] )
+    if (len(frequest.args) == 3):
+        music_tags = []
+        weather_info = {}
+        location = frequest.args.get("q").strip()
+        if (len(location) > 0):
+            weather_dict = {}
+            if (location.isdigit()):
+                try:
+                    weather_dict = getWeather.getDict(getWeather.getURLZipCode(location))
+                except error.HTTPError:
+                    flash("The zipcode that was entered does not exist in the US.", "error")
+                    return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
+            else:
+                try:
+                    weather_dict = getWeather.getDict(getWeather.getURLCityName(location))
+                except error.HTTPError:
+                    flash("The city name that was entered does not exist. Please check for spaces.","error")
+                    return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
+            weather_info = getWeather.getRelevantInfoDict(weather_dict)
+            music_tags = getMusic.getMusicTags( weather_info['temp'] )
+        mood = frequest.args.get("mood")
+        if (len(mood) > 0):
+            music_tags.append(mood)
         suggested_songs = []
         for tag in music_tags:
             url = getMusic.getURL( tag )
@@ -162,7 +168,8 @@ def search():
         return render_template("search.html", isLoggedIn = is_logged_in(),
                                               has_searched= True,
                                               song_list = suggested_songs,
-                                              city_info= weather_info)
+                                              city_info= weather_info,
+                                              mood_info = mood)
     return render_template("search.html", isLoggedIn = is_logged_in(), has_searched = False)
 
 if __name__ == "__main__":

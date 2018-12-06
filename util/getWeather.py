@@ -9,13 +9,9 @@ import json #stdlib
 # util file for sending OpenWeatherMap API requests, returning relevant information
 
 #get API key from WEATHER_API_KEY.txt
-try:
-    WEATHER_API_KEY = open('./WEATHER_API_KEY.txt', 'r') #file object from perspective of app.py
-    WEATHER_API_KEY = WEATHER_API_KEY.read() #contents of file
-    WEATHER_API_KEY = WEATHER_API_KEY.replace('\n', '') #remove newline characters
-except FileNotFoundError:
-    print('You are missing the OpenWeatherMap API key! Read more: https://github.com/jerry1ye10/Dry-Popcorn/')
-    exit()
+WEATHER_API_KEY = open('./WEATHER_API_KEY.txt', 'r') #file object
+WEATHER_API_KEY = WEATHER_API_KEY.read() #contents of file
+WEATHER_API_KEY = WEATHER_API_KEY.replace('\n', '') #remove newline characters
 
 # print( repr(WEATHER_API_KEY) ) #for debugging
 
@@ -70,25 +66,24 @@ def getRelevantInfoDict (dataDict):
 # PUTTING IT TOGETHER - DEBUGGING BELOW
 #    BAD PRACTICE TO import HERE ... DO NOT FOLLOW ...
 #    FOR PROOF OF CONCEPT ONLY!
+'''
+import getMusic
 
-# must change open() to '../[SERVICE]_API_KEY.txt'
+d = getDict( getURLZipCode(10282) )
+relInfoDict = getRelevantInfoDict( d )
+print( relInfoDict['temp'] ) #current temp
+musicTags = getMusic.getMusicTags( relInfoDict['temp'] )
+musicTags.append("asdkljasjdkasjdsak") #testing bad tag
+print (musicTags) #music tags for current temp
 
-# import getmusic
+suggestedSongs = []
+for tag in musicTags:
+    url = getMusic.getURL( tag )
+    jsonDict = getMusic.getDict( url )
+    relInfoList = getMusic.getRelevantInfoList( jsonDict )
+    songsFromThisTag = getMusic.getNSongs( relInfoList, 2 )
+    for song in songsFromThisTag: #getNSongs() returns a list
+        suggestedSongs.append(song)
 
-# d = getdict( geturlzipcode(10282) )
-# relinfodict = getrelevantinfodict( d )
-# print( relinfodict['temp'] ) #current temp
-# musictags = getmusic.getmusictags( relinfodict['temp'] )
-# musictags.append("asdkljasjdkasjdsak") #testing bad tag
-# print (musictags) #music tags for current temp
-
-# suggestedsongs = []
-# for tag in musictags:
-#     url = getmusic.geturl( tag )
-#     jsondict = getmusic.getdict( url )
-#     relinfolist = getmusic.getrelevantinfolist( jsondict )
-#     songsfromthistag = getmusic.getnsongs( relinfolist, 2 )
-#     for song in songsfromthistag: #getnsongs() returns a list
-#         suggestedsongs.append(song)
-
-# print( suggestedsongs )
+print( suggestedSongs )
+'''

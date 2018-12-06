@@ -6,46 +6,67 @@
 
 {% block content %}
 <div class="main">
-  <h1>Search</h1>
-  <br>
-  {% set msgs = get_flashed_messages(with_categories=true) %}
-  {% for category, each in msgs %}
-    <p class="{{category}}">{{each}}<p>
-  {% endfor %}
-  <form action="/search" method="GET">
-    <p class="login-info">Type in a city name or US zipcode to find songs based on the weather!</p>
-    <input type="text" name="q">
-    <br><br>
-    <input type="submit" id="submit" name="submit" value="Search">
-  </form>
-  <br>
-  {% if has_searched %}
-    <p><b>Search results:</b> {{city_info.locationName}}, {{city_info.country}} | {{city_info.temp}}°F | {{city_info.condition}}</p>
-    <div class="container">
+  <div class="container">
+    <h1>Search</h1>
+    <br>
+    {% set msgs = get_flashed_messages(with_categories=true) %}
+    {% for category, each in msgs %}
+      <p class="{{category}}">{{each}}<p>
+    {% endfor %}
+    <form action="/search" method="GET">
       <div class="row">
-        {% for song in song_list %}
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-              <div class="song">
-              <a class="song-link" href="{{song.url}}" target="_blank">
-                <img class="song-image" width="250px" height="250px"
-                src="{{song.image}}" alt="Cover Image">
-                <br>
-                <span class="song-title">{{song.name}}</span>
-                <br>
-                <span class="song-artist">{{song.artist}}</span>
-              </a>
-              <form action="/change_favorite" method="post">
-                <input type="hidden" name="song_name" value="{{song.name}}">
-                <input type="hidden" name="song_artist" value="{{song.artist}}">
-                <input type="hidden" name="song_url" value="{{song.url}}">
-                <input type="hidden" name="song_image" value="{{song.image}}">
-                <input class="favorite-button" type="submit" name="submit" value="Favorite">
-              </form>
-              </div>
-            </div>
-        {% endfor %}
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 ">
+          <p class="login-info">Type in a city name or US zipcode to find songs based on the weather!</p>
+          <input type="text" name="q" placeholder="City Name or US Zipcode">
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <p class="login-info">Alternatively, you can also find music based on your mood.</p>
+          <input type="text" name="mood" placeholder="Mood">
+        </div>
       </div>
-    </div>
-  {% endif %}
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <br>
+          <input type="submit" id="submit" name="submit" value="Search">
+        </div>
+        <br><br>
+      </div>
+    </form>
+  </div>
+    <br>
+    {% if has_searched %}
+      <p><b>Search results:</b>
+      {% if city_info|length > 0 %}
+        {{city_info.locationName}}, {{city_info.country}} | {{city_info.temp}}°F | {{city_info.condition}} |
+      {% endif %}
+      {% if mood_info|length > 0 %}
+        {{mood_info}}
+      {% endif %}
+      </p>
+        <div class="row">
+          {% for song in song_list %}
+              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="song">
+                <a class="song-link" href="{{song.url}}" target="_blank">
+                  <img class="song-image" width="250px" height="250px"
+                  src="{{song.image}}" alt="Cover Image">
+                  <br>
+                  <span class="song-title">{{song.name}}</span>
+                  <br>
+                  <span class="song-artist">{{song.artist}}</span>
+                </a>
+                <form action="/change_favorite" method="post">
+                  <input type="hidden" name="song_name" value="{{song.name}}">
+                  <input type="hidden" name="song_artist" value="{{song.artist}}">
+                  <input type="hidden" name="song_url" value="{{song.url}}">
+                  <input type="hidden" name="song_image" value="{{song.image}}">
+                  <input class="favorite-button" type="submit" name="submit" value="Favorite">
+                </form>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+      {% endif %}
+  </div>
 </div>
 {% endblock %}
