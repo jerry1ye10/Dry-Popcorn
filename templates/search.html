@@ -43,30 +43,30 @@
         {{mood_info}}
       {% endif %}
       </p>
-        <div class="row">
-          {% for song in song_list %}
-              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="song">
-                <a class="song-link" href="{{song.url}}" target="_blank">
-                  <img class="song-image" width="250px" height="250px"
-                  src="{{song.image}}" alt="Cover Image">
-                  <br>
-                  <span class="song-title">{{song.name}}</span>
-                  <br>
-                  <span class="song-artist">{{song.artist}}</span>
-                </a>
-                <form action="/change_favorite" method="post">
-                  <input type="hidden" name="song_name" value="{{song.name}}">
-                  <input type="hidden" name="song_artist" value="{{song.artist}}">
-                  <input type="hidden" name="song_url" value="{{song.url}}">
-                  <input type="hidden" name="song_image" value="{{song.image}}">
-                  <input class="favorite-button" type="submit" name="submit" value="Favorite">
-                </form>
-                </div>
+      <div class="row">
+        {% for song in song_list %}
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <div class="song">
+              <a class="song-link" href="{{song.url}}" target="_blank">
+                <img class="song-image" width="250px" height="250px"
+                src="{{song.image}}" alt="Cover Image">
+                <br>
+                <span class="song-title">{{song.name}}</span>
+                <br>
+                <span class="song-artist">{{song.artist}}</span>
+              </a>
+              <form action="/change_favorite" method="post">
+                <input type="hidden" name="song_name" value="{{song.name}}">
+                <input type="hidden" name="song_artist" value="{{song.artist}}">
+                <input type="hidden" name="song_url" value="{{song.url}}">
+                <input type="hidden" name="song_image" value="{{song.image}}">
+                <input class="favorite-button" type="submit" name="submit" value="Favorite">
+              </form>
               </div>
-            {% endfor %}
-        </div>
-      {% endif %}
+            </div>
+          {% endfor %}
+      </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
